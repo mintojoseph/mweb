@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
@@ -37,6 +38,27 @@ func helloworldHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// GitCommit for hash
+var GitCommit string
+
+func versionzHandler(w http.ResponseWriter, r *http.Request) {
+
+	type versionDetails struct {
+		Name string
+		Hash string
+	}
+	basket := versionDetails{
+		Name: "mweb",
+		Hash: GitCommit,
+	}
+	var jsonData []byte
+	jsonData, err := json.Marshal(basket)
+	if err != nil {
+		log.Println(err)
+	}
+	fmt.Fprintf(w, string(jsonData))
+}
+
 func main() {
 
 	port := "8080"
@@ -44,6 +66,6 @@ func main() {
 	fmt.Println("PORT:", portNo)
 
 	http.HandleFunc("/helloworld", helloworldHandler)
-
+	http.HandleFunc("/versionz", versionzHandler)
 	log.Fatal(http.ListenAndServe(":"+portNo, nil))
 }
