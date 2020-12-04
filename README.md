@@ -20,3 +20,8 @@ Usage of ./mweb:
  ``` cmdline
  ./mweb -port 8083
 ```
+
+``` cmdline
+sudo docker build  -t  mintojoseph/mweb:1.0 .
+sudo docker container run -p 8080:8080 mintojoseph/mweb:1.0
+```

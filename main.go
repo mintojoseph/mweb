@@ -36,21 +36,22 @@ func camelToSpaced(str string) string {
 	return (spaced)
 }
 
-// helloworld HTTP Handler
-func helloworldHandler(w http.ResponseWriter, r *http.Request) {
+// HelloworldHandler HTTP Handler
+func HelloworldHandler(w http.ResponseWriter, r *http.Request) {
 	value := r.URL.Query().Get("name")
 	if len(value) > 0 {
-		fmt.Fprintf(w, "Hello %s\n", camelToSpaced(value))
+		fmt.Fprintf(w, "Hello %s", camelToSpaced(value))
 	} else {
 
-		fmt.Fprintf(w, "Hello Stranger\n")
+		fmt.Fprintf(w, "Hello Stranger")
 	}
 }
 
 // GitCommit for hash
 var GitCommit string
 
-func versionzHandler(w http.ResponseWriter, r *http.Request) {
+//VersionzHandler for test
+func VersionzHandler(w http.ResponseWriter, r *http.Request) {
 
 	type versionDetails struct {
 		Name string
@@ -117,7 +118,7 @@ func main() {
 
 	fmt.Println("HTTP PORT:", *portHTTP)
 
-	http.HandleFunc("/helloworld", helloworldHandler)
-	http.HandleFunc("/versionz", versionzHandler)
+	http.HandleFunc("/helloworld", HelloworldHandler)
+	http.HandleFunc("/versionz", VersionzHandler)
 	log.Fatal(http.ListenAndServe(":"+*portHTTP, Logger(os.Stderr, http.DefaultServeMux)))
 }
