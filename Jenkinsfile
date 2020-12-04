@@ -10,7 +10,7 @@ node {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-        app = docker.build("mintojoseph/mweb", "--target test")
+        app = docker.build("mintojoseph/mweb", "--target test .")
     }
 
     stage('Build image') {
