@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "mweb-helm.fullname" . }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ include "mweb-helm.fullname" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "mweb-helm.fullname" . }}
+    spec:
+      terminationGracePeriodSeconds: 30
+      containers:
+      - name: {{ include "mweb-helm.fullname" . }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+        ports:
+        - containerPort: 8080
+        resources:
+          {{- toYaml .Values.resources | nindent 12 }}
