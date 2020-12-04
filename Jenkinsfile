@@ -7,20 +7,17 @@ node {
     }
 
     stage('Test Code') {
+        /* This builds the actual image; synonymous to
+         * docker build on the command line */
 
-            agent {
-                dockerfile {
-                    filename 'Dockerfile'
-                    additionalBuildArgs '--target test'
-                }
-            }
+        app = docker.build("mintojoseph/mweb", "--target test")
     }
 
     stage('Build image') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-        app = docker.build("getintodevops/hellonode")
+        app = docker.build("mintojoseph/mweb")
     }
 
     stage('Push image') {
