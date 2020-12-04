@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 replicaCount: 1
-
+terminationGracePeriodSeconds: 30
 image:
   repository:  mintojoseph/mweb
   pullPolicy: IfNotPresent
@@ -12,28 +12,9 @@ image:
 metallb:
   address_range:  192.168.39.140-192.168.39.150
   
-
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
-
-terminationGracePeriodSeconds: 30
-
-serviceAccount:
-  # Specifies whether a service account should be created
-  create: true
-  # Annotations to add to the service account
-  annotations: {}
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
-  name: ""
-
-podAnnotations: {}
-
-podSecurityContext: {}
-
-
-securityContext: {}
 
 
 service:
@@ -53,8 +34,3 @@ resources: {}
   #   cpu: 100m
   #   memory: 128Mi
 
-nodeSelector: {}
-
-tolerations: []
-
-affinity: {}

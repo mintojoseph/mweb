@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: {{ include "mweb-helm.fullname" . }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       app: {{ include "mweb-helm.fullname" . }}
@@ -12,11 +12,11 @@ spec:
       labels:
         app: {{ include "mweb-helm.fullname" . }}
     spec:
-      terminationGracePeriodSeconds: 30
+      terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
       containers:
       - name: {{ include "mweb-helm.fullname" . }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
         ports:
-        - containerPort: 8080
+        - containerPort: {{ .Values.service.port }}
         resources:
           {{- toYaml .Values.resources | nindent 12 }}
