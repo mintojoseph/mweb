@@ -26,6 +26,14 @@ node {
             app.push("latest")
         }
     }
+    stage('Set Terraform path') {
+        script {
+         def tfHome = tool name: ‘Terraform’
+         env.PATH = “${tfHome}:${env.PATH}”
+        }
+        sh "terraform -version"
+    }
+ 
     stage('Terraform Init') {
       
         sh "cd terraform; terraform init -input=false"
