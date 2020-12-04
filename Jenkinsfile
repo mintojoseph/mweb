@@ -26,19 +26,27 @@ node {
             app.push("latest")
         }
     }
+    stage('Set Terraform path') {
+        script {
+         def tfHome = tool name: 'Terraform'
+         env.PATH = "${tfHome}:${env.PATH}"
+        }
+        sh "terraform -version"
+    }
+ 
     stage('Terraform Init') {
-      steps {
+      
         sh "cd terraform; terraform init -input=false"
-      }
+      
     }
     stage('Terraform Plan') {
-      steps {
-        sh "terraform plan -out=tfplan -input=false"
-      }
+      
+        sh "cd terraform; terraform plan -out=tfplan -input=false"
+      
     }
     stage('Terraform Apply') {
-      steps {
-        input 'Apply Plan'
-        sh "terraform apply -input=false tfplan"
-      }
+      
+        sh "cd terraform; terraform apply -input=false tfplan"
+      
+    }
 }
