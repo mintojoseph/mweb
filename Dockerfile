@@ -9,5 +9,5 @@ COPY . /go/src/app
 RUN make build
 
 FROM golang:1.8
-COPY --from=build /go/src/app/. .
+COPY --from=build /go/src/app/mweb .
 CMD ["./mweb"]
