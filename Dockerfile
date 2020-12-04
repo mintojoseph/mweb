@@ -7,7 +7,5 @@ FROM golang:1.8 as build
 WORKDIR /go/src/app
 COPY . /go/src/app
 RUN make build
-
-FROM golang:1.8
-COPY --from=build /go/src/app/mweb ./mweb
-CMD ["./mweb"]
+COPY ./mweb /bin/mweb
+CMD ["/bin/mweb"]
