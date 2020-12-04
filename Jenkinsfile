@@ -41,12 +41,12 @@ node {
     }
     stage('Terraform Plan') {
       
-        sh "terraform plan -out=tfplan -input=false"
+        sh "cd terraform; terraform plan -out=tfplan -input=false"
       
     }
     stage('Terraform Apply') {
       
-        sh "terraform apply -input=false tfplan"
+        sh "cd terraform; terraform apply -input=false tfplan"
       
     }
 }
