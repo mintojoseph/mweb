@@ -27,4 +27,3 @@ kubectl get svc  -l "app=loki" -o jsonpath="{.items[0].spec.clusterIP}"
 ```
 
 Add above ip in the datasources like http://<< ip >>:3100.
-
