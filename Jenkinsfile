@@ -43,7 +43,7 @@ node {
           script:
             - false || exit_code=$?
             
-        sh "helm uninstall mweb || exit_code=\$\?"
+        sh "helm uninstall mweb || exit_code=\$?"
 
     }
 
