@@ -38,9 +38,9 @@ node {
 
 // Not the right way. Correct way would be to use a remote state. 
 // Destroying for workarounding state issues.
-    stage('Terraform Destroy') {
+    stage('Destroy') {
 
-        sh "cd deployment/terraform; terraform destroy -input=false -auto-approve"
+        sh "helm uninstall mweb"
 
     }
 
