@@ -29,11 +29,3 @@ Docker Build
 sudo docker build  -t  mintojoseph/mweb:1.0 .
 sudo docker container run -p 8080:8080 mintojoseph/mweb:1.0
 ```
-
-Deploy kubernetes service
-
-``` cmdline
-#   kubectl apply -f deployment.yml
-#   kubectl apply -f metallb.yml
-#   kubectl apply -f service.yml
-```
