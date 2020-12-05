@@ -7,15 +7,11 @@ node {
     }
 
     stage('Test Code') {
-        /* This builds the actual image; synonymous to
-         * docker build on the command line */
 
         app = docker.build("mintojoseph/mweb:test", "--target test .")
     }
 
     stage('Build image') {
-        /* This builds the actual image; synonymous to
-         * docker build on the command line */
 
         app = docker.build("mintojoseph/mweb")
     }
