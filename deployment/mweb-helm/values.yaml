@@ -6,8 +6,7 @@ replicaCount: 1
 terminationGracePeriodSeconds: 30
 image:
   repository:  mintojoseph/mweb
-  pullPolicy: IfNotPresent
-  tag: "10"
+  tag: "latest"
 
 metallb:
   address_range:  192.168.39.140-192.168.39.150

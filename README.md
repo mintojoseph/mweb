@@ -10,6 +10,13 @@ kubectl
 helm
 terraform
 
+Jenkins with following plugins,
+Docker Pipeline
+Terraform
+Kubernetes CLI
+
+minikube
+
 ### Available parameters
 
 ``` cmdline

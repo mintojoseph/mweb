@@ -35,6 +35,15 @@ node {
         sh "cd deployment/terraform; terraform init -input=false"
       
     }
+
+// Not the right way. Correct way would be to use a remote state. 
+// Destroying for workarounding state issues.
+    stage('Destroy') {
+            
+        sh "helm uninstall mweb || exit 0"
+
+    }
+
     stage('Terraform Plan') {
       
         sh "cd deployment/terraform; terraform plan -out=tfplan -input=false"
@@ -42,7 +51,7 @@ node {
     }
     stage('Terraform Apply') {
       
-        sh "cd deployment/terraform; terraform apply -input=false tfplan"
+        sh "cd deployment/terraform; terraform apply -auto-approve -input=false tfplan "
       
     }
 }
