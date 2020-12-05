@@ -39,11 +39,8 @@ node {
 // Not the right way. Correct way would be to use a remote state. 
 // Destroying for workarounding state issues.
     stage('Destroy') {
-        job:
-          script:
-            - false || exit_code=$?
             
-        sh "helm uninstall mweb || exit_code=\$?"
+        sh "helm uninstall mweb || exit 0"
 
     }
 
