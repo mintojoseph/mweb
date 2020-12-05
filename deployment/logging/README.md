@@ -1,4 +1,4 @@
-# mweb
+# Logging
 
 Deploy grafana with loki using terraform.
 
