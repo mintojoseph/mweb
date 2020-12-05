@@ -40,7 +40,7 @@ node {
 // Destroying for workarounding state issues.
     stage('Terraform Destroy') {
 
-        sh "cd deployment/terraform; terraform destroy -input=false"
+        sh "cd deployment/terraform; terraform destroy -input=false -auto-approve"
 
     }
 
@@ -51,7 +51,7 @@ node {
     }
     stage('Terraform Apply') {
       
-        sh "cd deployment/terraform; terraform apply -input=false tfplan"
+        sh "cd deployment/terraform; terraform apply -input=false tfplan -auto-approve"
       
     }
 }
