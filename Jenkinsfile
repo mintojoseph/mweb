@@ -39,6 +39,10 @@ node {
 // Not the right way. Correct way would be to use a remote state. 
 // Destroying for workarounding state issues.
     stage('Destroy') {
+        job:
+          script:
+            - false || exit_code=$?
+            - if [ $exit_code -ne 0 ]; then echo "Previous command failed"; fi;
 
         sh "helm uninstall mweb"
 
