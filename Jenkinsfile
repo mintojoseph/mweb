@@ -42,9 +42,8 @@ node {
         job:
           script:
             - false || exit_code=$?
-            - if [ $exit_code -ne 0 ]; then echo "Previous command failed"; fi;
-
-        sh "helm uninstall mweb"
+            
+        sh "helm uninstall mweb || exit_code=$?"
 
     }
 
