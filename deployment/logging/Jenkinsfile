@@ -20,12 +20,12 @@ node {
       
     }
 
-// Not the right way. Correct way would be to use a remote state. 
+// Not the right way. Correct way would be to use a remote state.
 // Destroying for workarounding state issues.
     stage('Destroy') {
-        
+
         sh "helm uninstall grafana -n grafana|| exit 0"
-        sh "helm uninstall loki || exit 0" 
+        sh "helm uninstall loki || exit 0"
         sh "kubectl delete namespaces grafana || exit 0 "
 
     }

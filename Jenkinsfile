@@ -36,10 +36,10 @@ node {
       
     }
 
-// Not the right way. Correct way would be to use a remote state. 
+// Not the right way. Correct way would be to use a remote state.
 // Destroying for workarounding state issues.
     stage('Destroy') {
-            
+
         sh "helm uninstall mweb || exit 0"
 
     }
