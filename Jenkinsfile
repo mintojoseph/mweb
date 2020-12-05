@@ -35,6 +35,15 @@ node {
         sh "cd deployment/terraform; terraform init -input=false"
       
     }
+
+// Not the right way. Correct way would be to use a remote state. 
+// Destroying for workarounding state issues.
+    stage('Terraform Destroy') {
+
+        sh "cd deployment/terraform; terraform destroy -input=false"
+
+    }
+
     stage('Terraform Plan') {
       
         sh "cd deployment/terraform; terraform plan -out=tfplan -input=false"
