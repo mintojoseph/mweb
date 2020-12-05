@@ -32,7 +32,7 @@ node {
  
     stage('Terraform Init') {
       
-        sh "cd terraform; terraform init -input=false"
+        sh "cd deployment/terraform; terraform init -input=false"
       
     }
     stage('Terraform Plan') {

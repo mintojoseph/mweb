@@ -1,7 +1,7 @@
 FROM golang:1.8 as test
 WORKDIR /go/src/app
 COPY . /go/src/app
-RUN go test -timeout 30s
+RUN go test ./internal -timeout 30s
 
 FROM golang:1.8 as build
 WORKDIR /go/src/app

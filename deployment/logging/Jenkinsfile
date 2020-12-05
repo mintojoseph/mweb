@@ -16,17 +16,17 @@ node {
  
     stage('Terraform Init') {
       
-        sh "cd logging; terraform init -input=false"
+        sh "cd deployment/logging; terraform init -input=false"
       
     }
     stage('Terraform Plan') {
       
-        sh "cd logging; terraform plan -out=tfplan -input=false"
+        sh "cd deployment/logging; terraform plan -out=tfplan -input=false"
       
     }
     stage('Terraform Apply') {
       
-        sh "cd logging; terraform apply -input=false tfplan"
+        sh "cd deployment/logging; terraform apply -input=false tfplan"
       
     }
 }

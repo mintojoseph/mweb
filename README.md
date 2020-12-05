@@ -36,6 +36,9 @@ sudo docker container run -p 8080:8080 mintojoseph/mweb:1.0
 
 ### Directories
 
-k8s - Kuberenetes yaml files.
-terraform - Terraform code for deploying application using helm charts.
-logging - Terraform code for deploying loki and grafana for monitoring using helm charts.
+deployment/k8s - Kuberenetes yaml files for mweb application.
+deployment/terraform - Terraform code for deploying mweb application using helm 
+charts.
+deployment/mweb-helm - helm charts for mweb application.
+deployment/logging - Terraform code for deploying loki and grafana for monitoring using helm charts.
+
