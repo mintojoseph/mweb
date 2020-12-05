@@ -51,7 +51,7 @@ node {
     }
     stage('Terraform Apply') {
       
-        sh "cd deployment/terraform; terraform apply -input=false tfplan -auto-approve"
+        sh "cd deployment/terraform; terraform apply -auto-approve -input=false tfplan "
       
     }
 }
