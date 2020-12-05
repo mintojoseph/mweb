@@ -1,0 +1,32 @@
+node {
+    def app
+
+    stage('Clone repository') {
+
+        checkout scm
+    }
+
+    stage('Set Terraform path') {
+        script {
+         def tfHome = tool name: 'Terraform'
+         env.PATH = "${tfHome}:${env.PATH}"
+        }
+        sh "terraform -version"
+    }
+ 
+    stage('Terraform Init') {
+      
+        sh "cd logging; terraform init -input=false"
+      
+    }
+    stage('Terraform Plan') {
+      
+        sh "cd logging; terraform plan -out=tfplan -input=false"
+      
+    }
+    stage('Terraform Apply') {
+      
+        sh "cd logging; terraform apply -input=false tfplan"
+      
+    }
+}
