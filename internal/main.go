@@ -17,14 +17,19 @@ import (
 func getEnv(key string, fallback string) string {
 	if value, ok := os.LookupEnv(key); ok {
 		return value
+
 	}
 	return fallback
 }
 
-var port = "8080"
-var portNo = getEnv("HTTPPORT", port)
-
-var portHTTP = flag.String("port", portNo, "HTTP port. HTTPPORT environment variable can also be used.")
+//FlagsAll for parsing flags
+func FlagsAll(port string) string {
+	portNo := port
+	var portNoP = flag.String("port", portNo, "HTTP port. HTTPPORT environment variable can also be used.")
+	flag.Parse()
+	PortHTTP := *portNoP
+	return PortHTTP
+}
 
 // Camel to Space
 var matchFirstCap = regexp.MustCompile("(.)([A-Z][a-z]+)")
@@ -114,11 +119,11 @@ func (o *responseObserver) WriteHeader(code int) {
 }
 
 func main() {
-	flag.Parse()
-
-	fmt.Println("HTTP PORT:", *portHTTP)
-
+	var port = "8080"
+	var portNo = getEnv("HTTPPORT", port)
+	portHTTP := FlagsAll(portNo)
+	fmt.Println("HTTP PORT:", portHTTP)
 	http.HandleFunc("/helloworld", HelloworldHandler)
 	http.HandleFunc("/versionz", VersionzHandler)
-	log.Fatal(http.ListenAndServe(":"+*portHTTP, Logger(os.Stderr, http.DefaultServeMux)))
+	log.Fatal(http.ListenAndServe(":"+portHTTP, Logger(os.Stderr, http.DefaultServeMux)))
 }

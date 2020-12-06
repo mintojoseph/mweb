@@ -21,6 +21,8 @@ Usage of ./mweb:
         HTTP port. HTTPPORT environment variable can also be used. (default "8080")
 ```
 
+Port can be set using HTTPPORT environment variable as well. Parameter takes precedence.
+
 ### Example
 
 Run the application.

@@ -3,6 +3,7 @@ package main
 import (
 	"net/http"
 	"net/http/httptest"
+	"os"
 	"testing"
 )
 
@@ -81,5 +82,14 @@ func TestArgHelloworldHandler(t *testing.T) {
 	if rr.Body.String() != expected {
 		t.Errorf("handler returned unexpected body: got %v want %v",
 			rr.Body.String(), expected)
+	}
+}
+
+func TestFlagsAll(t *testing.T) {
+	expected := "8081"
+	os.Args = []string{"mweb", "-port", "8081"}
+	actual := FlagsAll("8081")
+	if actual != expected {
+		t.Errorf("Test failed, expected: '%s', got:  '%s'", expected, actual)
 	}
 }

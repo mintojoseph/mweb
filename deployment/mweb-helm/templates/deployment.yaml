@@ -20,3 +20,6 @@ spec:
         - containerPort: {{ .Values.service.port }}
         resources:
           {{- toYaml .Values.resources | nindent 12 }}
+        env:
+        - name: HTTPPORT
+          value: {{ .Values.service.port }}
