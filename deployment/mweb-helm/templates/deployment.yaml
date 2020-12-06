@@ -22,4 +22,4 @@ spec:
           {{- toYaml .Values.resources | nindent 12 }}
         env:
         - name: HTTPPORT
-          value: {{ .Values.service.port }}
+          value: "{{ .Values.service.port }}"
